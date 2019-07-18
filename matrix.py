@@ -13,32 +13,35 @@ grid = \
         24	55	58	5	66	73	99	26	97	17
         21	36	23	9	75	0	76	44	20	45'''
 
-def findMax(matrix, len):
+def findMax(matrix, n, m, adjNums):
     
-    a = np.array([ int(x) for x in matrix.split() ]).reshape(len,len)
+    a = np.array([ int(x) for x in matrix.split() ]).reshape(n,m)
     print (a)
     b = a[::-1,]
 
     maxprod = 0
 
-    for i in range(len):
-        for j in range(len):
-            r = np.prod( a[i][j:j+4] )
-            c = np.prod( a[:,j][i:i+4] )
+    for i in range(n):
+        for j in range(m):
+            r = np.prod( a[i][j:j+adjNums] )
+            c = np.prod( a[:,j][i:i+adjNums] )
             k = min(i,j)
-            d1 = np.prod( np.diagonal(a, j-i)[ k:k+4 ] )
-            d2 = np.prod( np.diagonal(b, j-i)[ k:k+4 ] )
+            d1 = np.prod( np.diagonal(a, j-i)[ k:k+adjNums ] )
+            d2 = np.prod( np.diagonal(b, j-i)[ k:k+adjNums ] )
             maxprod = max([maxprod,r,c,d1,d2])
     
     return maxprod
 
-def countOfThrees(data, len):
+def countOfThrees(grid, n, m, adjNums):
     maxcount=0
 
     return maxcount
 
-maxm = findMax(grid, 10)
-print (maxm)
+def printMe():
+    maxm = findMax(grid, 10, 10, 3)
+    print ("max product of 3 adjacent number: %s" % (maxm))
 
-count = countOfThrees(grid, 10)
-print (count)
+    count = countOfThrees(grid, 10, 10, 3)
+    print (count)
+
+printMe()
