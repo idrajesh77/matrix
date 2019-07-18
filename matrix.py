@@ -42,6 +42,6 @@ def printMe():
     print ("max product of 3 adjacent number: %s" % (maxm))
 
     count = countOfThrees(grid, 10, 10, 3)
-    print (count)
+    print ("max count of 3 adjacent number: %s" % (maxm))
 
 printMe()
